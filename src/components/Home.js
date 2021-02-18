@@ -16,7 +16,7 @@ const Home = () => {
 
     const handleDelete = (e, item) => {
         var id = item._id
-        axios.delete(`https://tdi-movie-wishlist.herokuapp.com/posts${id}`, {
+        axios.delete(`https://tdi-movie-wishlist.herokuapp.com/posts/${id}`, {
             params: {id}
         }).then(response => console.log(response))
 
