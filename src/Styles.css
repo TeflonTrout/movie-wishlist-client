@@ -1,0 +1,224 @@
+* {
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  color: white;
+}
+
+.add-movie-form {
+  border: none;
+  background-color: grey;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 34px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  outline: none;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.add-movie-form .grid {
+  padding: 5px;
+}
+
+.add-movie-form form {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.add-movie-form form input {
+  font-size: 25px;
+  margin: 10px;
+  width: 40%;
+}
+
+.add-movie-form form input:focus {
+  outline: none;
+}
+
+.add-movie-form form option {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px;
+  text-align: center;
+}
+
+.add-movie-form form select {
+  margin: 10px;
+  margin-bottom: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 30%;
+}
+
+.add-movie-form form select:focus {
+  outline: none;
+}
+
+.card-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-top: 25px;
+  width: 100%;
+}
+
+.card-container .card-poster {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 100%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.card-container .card-poster img {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 300px;
+}
+
+.card-container .description-box {
+  width: 100%;
+  max-height: 100px;
+  overflow-y: scroll;
+}
+
+.card-container .description-box ::-webkit-scrollbar {
+  display: none;
+}
+
+.card-container .description-box .description {
+  color: black;
+  font-size: 12px;
+  overflow-y: hidden;
+}
+
+.card-container h2 {
+  text-align: center;
+  font-size: 25px;
+  margin: 5px;
+}
+
+.card-container h6 {
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0;
+  padding: none;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.card-container p {
+  font-size: 16px;
+}
+
+.card-container .negative {
+  color: #ff1b1b;
+}
+
+.card-container .positive {
+  color: #006300;
+}
+
+.card-container .rating {
+  margin: 5px;
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.empty-array {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.list-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+}
+
+.list-container .list-item {
+  width: 80%;
+}
+
+.list-container .list-item .MuiAccordionDetails-root {
+  padding: 15px;
+}
+
+.list-container .list-item .MuiAccordionDetails-root .delete-icon {
+  float: right;
+  position: relative;
+  margin: 10px;
+  margin-left: 50px;
+}
+
+.list-container .list-item .MuiAccordionDetails-root .delete-icon:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.list-container .High {
+  background-color: #ff8484;
+}
+
+.list-container .Medium {
+  background-color: #ffff82;
+}
+
+.list-container .Low {
+  background-color: #76ff76;
+}
+
+.list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 60%;
+}
+
+.movieCard {
+  min-width: 250px;
+  max-width: 250px;
+}
+
+.navbar-links {
+  font-weight: 300;
+}
+/*# sourceMappingURL=Styles.css.map */
