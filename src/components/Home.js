@@ -49,6 +49,7 @@ const Home = () => {
                             <AccordionDetails style={{alignItems: "center"}}>
                                 <div>
                                     <Typography>Priority Level: {item.priority}</Typography>
+                                    <Typography>Submitted By: {item.creator}</Typography>
                                 </div>
                                 <div className="delete-icon">
                                     <DeleteIcon onClick={e => handleDelete(e, item)}/>

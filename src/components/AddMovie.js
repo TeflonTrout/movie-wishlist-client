@@ -41,6 +41,7 @@ const AddMovie = () => {
     }
 
     var gridStyle = {
+        padding: '0px',
         width: '300px',
         flexGrow: 1
     }
@@ -56,7 +57,7 @@ const AddMovie = () => {
                 className="grid"
                 spacing={8} 
                 direction='row' 
-                justify='space-evenly' 
+                justify='space-around' 
                 alignItems='flex-start'>
                 {query.slice(0,12).map(item => (
                     <Grid item key={item.id} style={gridStyle} xs={12} sm={7} md={5} lg={3} xl={2}>
