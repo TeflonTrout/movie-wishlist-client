@@ -125,7 +125,7 @@ const MovieCard = (props) => {
                         <img src={`https://image.tmdb.org/t/p/w500/${props.data.poster_path}`} alt={Image}/>
                     </div>
                     <h2>{props.data.title}</h2>
-                    <h6>Released: {props.data.release_date}</h6>
+                    <h6 style={{marginBottom: '5px'}}>Released: {props.data.release_date}</h6>
                     <p style={{margin: '0px'}} className={'rating ' + (positiveRating ? 'positive' : '') + (negativeRating ? 'negative' : '')}>Rating: {props.data.vote_average}</p>
                     <div className='description-box'>
                         <p className='description-true'>{props.data.overview}</p>
