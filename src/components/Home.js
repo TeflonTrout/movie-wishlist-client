@@ -9,11 +9,13 @@ import '../Styles.css'
 const Home = () => {
     const [dataPull, setDataPull] = useState([]);
     
+    //ON LOAD PULL DATA FROM DATABASE
     useEffect(() => {
         axios.get('https://tdi-movie-wishlist.herokuapp.com/posts')
             .then(results => setDataPull(results.data))
     }, []);
 
+    //DELETE MOVIE BASED ON ID
     const handleDelete = (e, item) => {
         var id = item._id
         axios.delete(`https://tdi-movie-wishlist.herokuapp.com/posts/${id}`, {
@@ -24,6 +26,7 @@ const Home = () => {
         window.location.reload();
     }
 
+    //BEFORE RENDER CHECK IF ARRAY IS EMPTY
     if (dataPull < 1) {
         return(
             <div className="empty-array">

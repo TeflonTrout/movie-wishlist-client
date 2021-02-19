@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardActions, Snackbar, Alert, Button, FormControl, TextField, InputLabel, MenuItem, Select } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import Image from './img/placeholder.png';
 import axios from 'axios';
 
 const MovieCard = (props) => {
+    //SETTING STATE
     const [snackbar, setSnackbar] = useState(false);
     const [snackbarAlert, setSnackbarAlert] = useState(false);
+    const [snackbarError, setSnackbarError] = useState(false);
     const [priority, setPriority] = useState("");
+    const [priorityValue, setPriorityValue] = useState(0);
     const [creator, setCreator] = useState("");
     const [positiveRating, setPositiveRating] = useState(false);
     const [negativeRating, setNegativeRating] = useState(false);
 
+    //MOVIE CARD STYLING
     var cardStyle = {
         display: 'flex',
         height: '600px',
@@ -23,7 +25,6 @@ const MovieCard = (props) => {
         position: 'relative',
         width: '100%'
     }
-
     var cardActionsStyle = {
         alignItems: "flex-end",
         bottom: 0,
@@ -36,10 +37,11 @@ const MovieCard = (props) => {
         width: '100%'
     }
 
+    //POPUP ALERT STYLING
     function Alert(props) {
         return <MuiAlert elevation={6} variant="filled" {...props} />;
     }
-
+    //ON LOAD CHECK IF MOVIE RATING IS "GOOD"
     useEffect(() => {
         var rating = props.data.vote_average;
         if ( rating >= 7) {
@@ -50,49 +52,69 @@ const MovieCard = (props) => {
             }
         }
     }, [])
-
+    //PRIORITY CHANGE FUNCTIONALITY
     const handlePriorityChange = e => {
         e.preventDefault();
+        if (priority === "Low") {
+            setPriorityValue(10)
+        } else if (priority === "Medium") {
+            setPriorityValue(20)
+        } else {
+            setPriorityValue(30)
+        }
         setPriority(e.target.value);
     }
-
+    //SET 'SUBMITTED BY'
     const handleCreatorChange = e => {
         e.preventDefault();
         setCreator(e.target.value);
     }
-
+    //ADDING MOVIE FUNCTIONALITY
     const addMovie = (e, props) => {
         e.preventDefault();
-
+        //CHECK IF PRIORITY IS SET
         if (priority === '' || creator === '') {
             setSnackbarAlert(true)
         } else {
+            //POST REQUEST
             axios.post('https://tdi-movie-wishlist.herokuapp.com/posts', {
                 "id" : props.data._id,
                 "movieTitle": props.data.title,
                 "priority": priority,
+                "value": priorityValue,
                 "creator": creator,
                 "submittedOn": Date.now()
             })
             .then(res =>{
                 console.log(res)
+                setSnackbar(true);
+            }).catch(err => {
+                //IF THERE IS AN ERROR POST SNACKBAR ERROR
+                setSnackbarError(true);
+                console.log(err.message);
             })
-            setSnackbar(true);
         }
     }
-
+    //POPUP FOR MOVIE ADDED
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
           return;
         }
         setSnackbar(false);
     };
-
+    //POPUP FOR MOVIE DUPLICATE
     const handleAlertClose = (event, reason) => {
         if (reason === 'clickaway') {
           return;
         }
         setSnackbarAlert(false);
+    };
+    //POPUP FOR FIELDS NOT SUBMITTED
+    const handleErrorClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        setSnackbarError(false);
     };
 
     return (
@@ -132,26 +154,21 @@ const MovieCard = (props) => {
                     </CardActions>
                 </CardContent>
             </Card>
-            <Snackbar
-                anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-                }}
-                open={snackbar}
-                autoHideDuration={6000}
-                onClose={handleClose}
-                message="Movie Added to Wishlist"
-                action={
-                <React.Fragment>
-                    <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
-                        <CloseIcon fontSize="small" />
-                    </IconButton>
-                </React.Fragment>
-                }
-            />
+
+            {/* SNACKBAR ALERTS */}
+            <Snackbar open={snackbar} autoHideDuration={3000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
+                    Movie Added to Wishlist!
+                </Alert>
+            </Snackbar>
             <Snackbar open={snackbarAlert} autoHideDuration={3000} onClose={handleAlertClose}>
                 <Alert onClose={handleAlertClose} severity="error">
                     PLEASE ENTER PRIORITY AND CREATOR!
+                </Alert>
+            </Snackbar>
+            <Snackbar open={snackbarError} autoHideDuration={4000} onClose={handleErrorClose}>
+                <Alert onClose={handleErrorClose} severity="warning">
+                    Movie Already Added to the List!
                 </Alert>
             </Snackbar>
         </div>
