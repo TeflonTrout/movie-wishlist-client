@@ -18,7 +18,7 @@ const MovieCard = (props) => {
     //MOVIE CARD STYLING
     var cardStyle = {
         display: 'flex',
-        height: '600px',
+        height: '560px',
         justifyContent: 'space-evenly',
         padding: '0px',
         margin: '0px',
@@ -33,7 +33,7 @@ const MovieCard = (props) => {
         justifyContent: 'space-evenly',
         padding: '0px',
         position: 'absolute',
-        marginBottom: '10px',
+        marginBottom: '15px',
         width: '100%'
     }
 
@@ -120,18 +120,18 @@ const MovieCard = (props) => {
     return (
         <div className='card-container'>
             <Card style={cardStyle} variant='outlined' >
-                <CardContent style={{padding: '0px', justifyContent: 'center'}}>
+                <CardContent style={{padding: '0px', paddingTop: '10px', justifyContent: 'center'}}>
                     <div className='card-poster'>
                         <img src={`https://image.tmdb.org/t/p/w500/${props.data.poster_path}`} alt={Image}/>
                     </div>
                     <h2>{props.data.title}</h2>
                     <h6>Released: {props.data.release_date}</h6>
-                    <p className={'rating ' + (positiveRating ? 'positive' : '') + (negativeRating ? 'negative' : '')}>Rating: {props.data.vote_average}</p>
+                    <p style={{margin: '0px'}} className={'rating ' + (positiveRating ? 'positive' : '') + (negativeRating ? 'negative' : '')}>Rating: {props.data.vote_average}</p>
                     <div className='description-box'>
                         <p className='description-true'>{props.data.overview}</p>
                     </div>
                     <CardActions style={cardActionsStyle}>
-                            <FormControl required={true} style={{display: 'flex', flexDirection: 'row', justifyContent: "space-evenly"}}>
+                            <FormControl required={true} style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: "space-evenly"}}>
                                 <InputLabel id="priority">Priority</InputLabel>
                                 <Select 
                                     labelId="priority"
@@ -145,11 +145,18 @@ const MovieCard = (props) => {
                                 </Select>
                                 <TextField 
                                     required={true}
-                                    style={{height: 'auto', padding: '0px', alignItems: "center", marginRight: '10px'}} 
+                                    style={{height: 'auto', padding: '0px', alignItems: "flex-start", justifyContent: 'center', marginRight: '10px'}} 
                                     label="Submitted By"
                                     onChange={e => handleCreatorChange(e)}
                                     ></TextField>
-                                <Button onClick={e => addMovie(e, props)} color='primary' variant='contained'>Add</Button>
+                                <Button 
+                                    style={{height: '25px'}}
+                                    onClick={e => addMovie(e, props)} 
+                                    color='primary' 
+                                    variant='contained'
+                                    >
+                                        Add
+                                </Button>
                             </FormControl>
                     </CardActions>
                 </CardContent>
