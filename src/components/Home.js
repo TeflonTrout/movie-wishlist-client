@@ -32,17 +32,6 @@ const Home = () => {
         //RELOAD PAGE TO REPULL DATA FROM DATABASE
         window.location.reload();
     }
-
-    // //BEFORE RENDER CHECK IF ARRAY IS EMPTY
-    // const checkArr = () => {
-    //     if (dataPull < 1) {
-    //         return(
-    //             <div className="empty-array">
-    //                 <h2>Loading...</h2>
-    //             </div>
-    //         )
-    //     }
-    // }
     
     return (
         <div>
