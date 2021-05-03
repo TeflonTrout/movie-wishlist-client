@@ -8,11 +8,18 @@ import '../Styles.css'
 
 const Home = () => {
     const [dataPull, setDataPull] = useState([]);
-    
+    const [isLoading, setIsLoading] = useState(false);
+
     //ON LOAD PULL DATA FROM DATABASE
     useEffect(() => {
-        axios.get('https://tdi-movie-wishlist.herokuapp.com/posts')
-            .then(results => setDataPull(results.data))
+        try {
+            setIsLoading(true);
+            axios.get('https://tdi-movie-wishlist.herokuapp.com/posts')
+                .then(results => setDataPull(results.data))
+                .then(() => setIsLoading(false))
+            } catch(error) {
+                console.error(error)
+            }
     }, []);
 
     //DELETE MOVIE BASED ON ID
@@ -26,17 +33,20 @@ const Home = () => {
         window.location.reload();
     }
 
-    //BEFORE RENDER CHECK IF ARRAY IS EMPTY
-    if (dataPull < 1) {
-        return(
-            <div className="empty-array">
-                <h2>Add some Movies!</h2>
-            </div>
-        )
-    }
+    // //BEFORE RENDER CHECK IF ARRAY IS EMPTY
+    // const checkArr = () => {
+    //     if (dataPull < 1) {
+    //         return(
+    //             <div className="empty-array">
+    //                 <h2>Loading...</h2>
+    //             </div>
+    //         )
+    //     }
+    // }
     
     return (
         <div>
+            <h1 style={{display: 'flex', justifyContent: 'center'}}>{isLoading ? "Loading..." : "Movie Wishlist"}</h1>
         {/* MAPPING DATA TO EXPANSION PANEL */}
             {dataPull.map(item => {
                 return(
