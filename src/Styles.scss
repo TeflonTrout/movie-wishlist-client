@@ -135,6 +135,17 @@ a {
     margin-top: 20px;
     position: relative;
     width: 100%;
+    .MuiAccordionSummary-content {
+        white-space: nowrap;
+        width: auto;
+    }
+    .release-date {
+        margin: 0 20px 0 20px;
+    }
+    .poster {
+        margin: 0 20px;
+        border-radius: 8px; 
+    }
     .list-item {
         width: 80%;
         .MuiAccordionDetails-root {
@@ -150,7 +161,9 @@ a {
                 color: red;
             }
         }
-
+        .archive {
+            margin: 0 20px 0 20px;
+        }
     }
     .High {
         background-color: rgb(255, 132, 132);
@@ -160,6 +173,9 @@ a {
     }
     .Low {
         background-color: rgb(118, 255, 118);
+    }
+    .orange {
+        background-color: rgb(255, 156, 27);
     }
 }
 

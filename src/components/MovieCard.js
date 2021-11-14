@@ -70,17 +70,19 @@ const MovieCard = (props) => {
         setCreator(e.target.value);
     }
     //ADDING MOVIE FUNCTIONALITY
-    const addMovie = (e, props) => {
+    const addMovie = async (e, props) => {
         e.preventDefault();
         //CHECK IF PRIORITY IS SET
         if (priority === '' || creator === '') {
             setSnackbarAlert(true)
         } else {
             //POST REQUEST
-            axios.post('https://tdi-movie-wishlist.herokuapp.com/posts', {
+            await axios.post('https://tdi-movie-wishlist.herokuapp.com/posts', {
                 "id" : props.data._id,
                 "movieTitle": props.data.title,
                 "priority": priority,
+                "releaseDate": props.data.release_date,
+                "poster": props.data.poster_path,
                 "value": priorityValue,
                 "creator": creator,
                 "submittedOn": Date.now()
@@ -119,6 +121,7 @@ const MovieCard = (props) => {
 
     return (
         <div className='card-container'>
+            {console.log(props)}
             <Card style={cardStyle} variant='outlined' >
                 <CardContent style={{padding: '0px', paddingTop: '10px', justifyContent: 'center'}}>
                     <div className='card-poster'>

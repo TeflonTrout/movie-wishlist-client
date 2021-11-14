@@ -7,7 +7,7 @@ import ArchiveIcon from '@material-ui/icons/Archive';
 import Image from "./img/placeholder.png";
 import '../Styles.css';
 
-const Home = () => {
+const Archive = () => {
     const [dataPull, setDataPull] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -15,8 +15,7 @@ const Home = () => {
     useEffect(() => {
         async function getData() {
             setIsLoading(true);
-            const headers = {'Access-Control-Allow-Origin': "*"}
-            await axios.get('https://tdi-movie-wishlist.herokuapp.com/posts', headers)
+            await axios.get('https://tdi-movie-wishlist.herokuapp.com/archive')
             .then(results => setDataPull(results.data))
             .then(() => setIsLoading(false))
         }
@@ -26,31 +25,12 @@ const Home = () => {
     //DELETE MOVIE BASED ON ID
     const handleDelete = async (e, item) => {
         var id = item._id
-        await axios.delete(`https://tdi-movie-wishlist.herokuapp.com/posts/${id}`, {
+        await axios.delete(`https://tdi-movie-wishlist.herokuapp.com/archive/${id}`, {
             params: {id}
         }).then(response => console.log(response))
 
         //RELOAD PAGE TO REPULL DATA FROM DATABASE
         window.location.reload();
-    }
-
-    //ARCHIVE MOVIE BASED ON ID
-    const handleArchive = async (e, item) => {
-        console.log(item)
-        await axios.post('https://tdi-movie-wishlist.herokuapp.com/archive', {
-            "id" : item._id,
-            "movieTitle": item.title,
-            "priority": item.priority,
-            "releaseDate": item.release_date,
-            "poster": item.poster_path,
-            "value": item.priorityValue,
-            "creator": item.creator,
-            "submittedOn": item.submittedOn
-        }).then(res => {
-            console.log(res)
-        }).then(() => {
-            handleDelete(item)
-        })
     }
     
     return (
@@ -61,7 +41,7 @@ const Home = () => {
                 return(
                     <div className="list-container" key={item._id}>
                         <Accordion 
-                            className={"list-item " + item.priority}
+                            className={"list-item orange"}
                             >
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -76,9 +56,6 @@ const Home = () => {
                                     <Typography>Submitted By: {item.creator}</Typography>
                                 </div>
                                 <div className="delete-icon">
-                                    <ArchiveIcon onClick={e => handleArchive(e, item)}/>
-                                </div>
-                                <div className="delete-icon">
                                     <DeleteIcon onClick={e => handleDelete(e, item)}/>
                                 </div>
                             </AccordionDetails>
@@ -90,4 +67,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Archive
