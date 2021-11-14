@@ -204,12 +204,12 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-top: 20px;
   position: relative;
-  width: 100%;
+  width: 90%;
 }
 
 .list-container .MuiAccordionSummary-content {
@@ -226,7 +226,10 @@ a {
 }
 
 .list-container .list-item {
-  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
 }
 
 .list-container .list-item .MuiAccordionDetails-root {
@@ -263,6 +266,52 @@ a {
 
 .list-container .orange {
   background-color: #ff9c1b;
+}
+
+@media screen and (max-width: 600px) {
+  .list-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+  }
+  .list-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+  }
+  .list-item .MuiAccordionDetails-root {
+    padding: 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .list-item .MuiAccordionDetails-root .delete-icon {
+    float: right;
+    position: relative;
+    margin: 10px;
+    margin-left: 50px;
+  }
+  .list-item .MuiAccordionDetails-root .delete-icon:hover {
+    cursor: pointer;
+    color: red;
+  }
+  .list-item .archive {
+    margin: 0 20px 0 20px;
+  }
 }
 
 .MuiGrid-root {

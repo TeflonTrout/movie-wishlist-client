@@ -62,21 +62,21 @@ const Home = () => {
     }
     
     return (
-        <div>
+        <div style={{display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: 'center'}}>
             <h1 style={{display: 'flex', justifyContent: 'center'}}>{isLoading ? "Loading..." : "Movie Wishlist"}</h1>
         {/* MAPPING DATA TO EXPANSION PANEL */}
             {dataPull.map(item => {
                 return(
                     <div className="list-container" key={item._id}>
                         {console.log(item.releaseDate)}
-                        <Accordion 
+                        <Accordion style={{width: '100%'}}
                             className={"list-item " + item.priority}
                             >
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                             >
                                 <Typography variant="h5">{item.movieTitle}</Typography>
-                                {item.releaseDate ? <Typography variant="h5" className="release-date"><Moment format="MM-DD-YYYY">{item.releaseDate}</Moment></Typography> : "" }
+                                {item.releaseDate ? <Typography variant="h5" className="release-date" style={{display: 'flex', alignItems: 'center'}}><Moment format="YYYY">{item.releaseDate}</Moment></Typography> : "" }
                             </AccordionSummary>
                             <AccordionDetails style={{alignItems: "center"}}>
                                 {item.poster !== undefined ? <img className="poster" src={`https://image.tmdb.org/t/p/w200/${item.poster}`} alt={Image} height={150}/> : ""}

@@ -131,10 +131,10 @@ a {
 
 .list-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     margin-top: 20px;
     position: relative;
-    width: 100%;
+    width: 90%;
     .MuiAccordionSummary-content {
         width: auto;
     }
@@ -146,7 +146,8 @@ a {
         border-radius: 8px; 
     }
     .list-item {
-        width: 80%;
+        display: flex;
+        width: 100%;
         .MuiAccordionDetails-root {
             padding: 15px;
             .delete-icon {
@@ -155,7 +156,7 @@ a {
                 margin: 10px;
                 margin-left: 50px;
             }
-            .delete-icon:hover {
+            .delete-icon:hover {                
                 cursor: pointer;
                 color: red;
             }
@@ -175,6 +176,39 @@ a {
     }
     .orange {
         background-color: rgb(255, 156, 27);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .list-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 20px;
+        position: relative;
+        width: 100%;
+    }
+    .list-item {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        .MuiAccordionDetails-root {
+            padding: 15px;
+            display: flex;
+            .delete-icon {
+                float: right;
+                position: relative;
+                margin: 10px;
+                margin-left: 50px;
+            }
+            .delete-icon:hover {
+                cursor: pointer;
+                color: red;
+            }
+        }
+        .archive {
+            margin: 0 20px 0 20px;
+        }
     }
 }
 

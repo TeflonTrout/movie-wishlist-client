@@ -35,7 +35,7 @@ const Archive = () => {
     }
     
     return (
-        <div>
+        <div style={{display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: 'center'}}>
             <h1 style={{display: 'flex', justifyContent: 'center'}}>{isLoading ? "Loading..." : "Archive"}</h1>
         {/* MAPPING DATA TO EXPANSION PANEL */}
             {dataPull.map(item => {
@@ -48,7 +48,7 @@ const Archive = () => {
                                 expandIcon={<ExpandMoreIcon />}
                             >
                                 <Typography variant="h5">{item.movieTitle}</Typography>
-                                <Typography variant="h5" className="release-date">{item.releaseDate?.slice(0,4)}</Typography>
+                                <Typography variant="h5" className="release-date" style={{display: 'flex', alignItems: 'center'}}><Moment format="YYYY">{item.releaseDate}</Moment></Typography>
                             </AccordionSummary>
                             <AccordionDetails style={{alignItems: "center"}}>
                                 {item.poster !== undefined ? <img className="poster" src={`https://image.tmdb.org/t/p/w200/${item.poster}`} alt={Image} height={150}/> : ""}
