@@ -5,6 +5,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArchiveIcon from '@material-ui/icons/Archive';
 import Image from "./img/placeholder.png";
+import Moment from "react-moment";
 import '../Styles.css';
 
 const Archive = () => {
@@ -35,7 +36,7 @@ const Archive = () => {
     
     return (
         <div>
-            <h1 style={{display: 'flex', justifyContent: 'center'}}>{isLoading ? "Loading..." : "Movie Wishlist"}</h1>
+            <h1 style={{display: 'flex', justifyContent: 'center'}}>{isLoading ? "Loading..." : "Archive"}</h1>
         {/* MAPPING DATA TO EXPANSION PANEL */}
             {dataPull.map(item => {
                 return(
@@ -52,8 +53,8 @@ const Archive = () => {
                             <AccordionDetails style={{alignItems: "center"}}>
                                 {item.poster !== undefined ? <img className="poster" src={`https://image.tmdb.org/t/p/w200/${item.poster}`} alt={Image} height={150}/> : ""}
                                 <div>
-                                    <Typography>Priority Level: {item.priority}</Typography>
                                     <Typography>Submitted By: {item.creator}</Typography>
+                                    <Typography>Submitted On: <Moment format="MM-DD-YYYY">{item.submittedOn.moment}</Moment></Typography>
                                 </div>
                                 <div className="delete-icon">
                                     <DeleteIcon onClick={e => handleDelete(e, item)}/>

@@ -5,6 +5,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArchiveIcon from '@material-ui/icons/Archive';
 import Image from "./img/placeholder.png";
+import Moment from 'react-moment';
 import '../Styles.css';
 
 const Home = () => {
@@ -36,21 +37,28 @@ const Home = () => {
 
     //ARCHIVE MOVIE BASED ON ID
     const handleArchive = async (e, item) => {
-        console.log(item)
+        console.log({id : item.id,
+            movieTitle: item.movieTitle,
+            releaseDate: item.releaseDate,
+            poster: item.poster,
+            creator: item.creator,
+            submittedOn: item.submittedOn})
         await axios.post('https://tdi-movie-wishlist.herokuapp.com/archive', {
-            "id" : item._id,
-            "movieTitle": item.title,
-            "priority": item.priority,
-            "releaseDate": item.release_date,
-            "poster": item.poster_path,
-            "value": item.priorityValue,
-            "creator": item.creator,
-            "submittedOn": item.submittedOn
+           id : item.id,
+           movieTitle: item.movieTitle,
+           releaseDate: item.releaseDate,
+           poster: item.poster,
+           creator: item.creator,
+           submittedOn: item.submittedOn
         }).then(res => {
             console.log(res)
-        }).then(() => {
-            handleDelete(item)
         })
+        var id = item._id
+        await axios.delete(`https://tdi-movie-wishlist.herokuapp.com/posts/${id}`, {
+                params: {id}
+        }).then(response => console.log(response))
+        //RELOAD PAGE TO REPULL DATA FROM DATABASE
+        window.location.reload();
     }
     
     return (
@@ -60,6 +68,7 @@ const Home = () => {
             {dataPull.map(item => {
                 return(
                     <div className="list-container" key={item._id}>
+                        {console.log(item.releaseDate)}
                         <Accordion 
                             className={"list-item " + item.priority}
                             >
@@ -67,7 +76,7 @@ const Home = () => {
                                 expandIcon={<ExpandMoreIcon />}
                             >
                                 <Typography variant="h5">{item.movieTitle}</Typography>
-                                <Typography variant="h5" className="release-date">{item.releaseDate?.slice(0,4)}</Typography>
+                                {item.releaseDate ? <Typography variant="h5" className="release-date"><Moment format="MM-DD-YYYY">{item.releaseDate}</Moment></Typography> : "" }
                             </AccordionSummary>
                             <AccordionDetails style={{alignItems: "center"}}>
                                 {item.poster !== undefined ? <img className="poster" src={`https://image.tmdb.org/t/p/w200/${item.poster}`} alt={Image} height={150}/> : ""}
