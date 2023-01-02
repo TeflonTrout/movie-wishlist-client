@@ -77,7 +77,7 @@ const MovieCard = (props) => {
             setSnackbarAlert(true)
         } else {
             //POST REQUEST
-            await axios.post('https://tdi-movie-wishlist.herokuapp.com/posts', {
+            await axios.post('https://tdi-voting-server.onrender.com/posts', {
                 "id" : props.data._id,
                 "movieTitle": props.data.title,
                 "priority": priority,

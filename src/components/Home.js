@@ -17,7 +17,7 @@ const Home = () => {
         async function getData() {
             setIsLoading(true);
             const headers = {'Access-Control-Allow-Origin': "*"}
-            await axios.get('https://tdi-movie-wishlist.herokuapp.com/posts', headers)
+            await axios.get('https://tdi-voting-server.onrender.com/posts', headers)
             .then(results => setDataPull(results.data))
             .then(() => setIsLoading(false))
         }
@@ -27,7 +27,7 @@ const Home = () => {
     //DELETE MOVIE BASED ON ID
     const handleDelete = async (e, item) => {
         var id = item._id
-        await axios.delete(`https://tdi-movie-wishlist.herokuapp.com/posts/${id}`, {
+        await axios.delete(`https://tdi-voting-server.onrender.com/posts/${id}`, {
             params: {id}
         }).then(response => console.log(response))
 
@@ -43,7 +43,7 @@ const Home = () => {
             poster: item.poster,
             creator: item.creator,
             submittedOn: item.submittedOn})
-        await axios.post('https://tdi-movie-wishlist.herokuapp.com/archive', {
+        await axios.post('https://tdi-voting-server.onrender.com/archive', {
            id : item.id,
            movieTitle: item.movieTitle,
            releaseDate: item.releaseDate,
@@ -54,7 +54,7 @@ const Home = () => {
             console.log(res)
         })
         var id = item._id
-        await axios.delete(`https://tdi-movie-wishlist.herokuapp.com/posts/${id}`, {
+        await axios.delete(`https://tdi-voting-server.onrender.com/posts/${id}`, {
                 params: {id}
         }).then(response => console.log(response))
         //RELOAD PAGE TO REPULL DATA FROM DATABASE

@@ -16,7 +16,7 @@ const Archive = () => {
     useEffect(() => {
         async function getData() {
             setIsLoading(true);
-            await axios.get('https://tdi-movie-wishlist.herokuapp.com/archive')
+            await axios.get('https://tdi-voting-server.onrender.com/archive')
             .then(results => setDataPull(results.data))
             .then(() => setIsLoading(false))
         }
@@ -26,7 +26,7 @@ const Archive = () => {
     //DELETE MOVIE BASED ON ID
     const handleDelete = async (e, item) => {
         var id = item._id
-        await axios.delete(`https://tdi-movie-wishlist.herokuapp.com/archive/${id}`, {
+        await axios.delete(`https://tdi-voting-server.onrender.com/archive/${id}`, {
             params: {id}
         }).then(response => console.log(response))
 
